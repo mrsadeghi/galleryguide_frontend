@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-0:      #0D0C0A;
+  --bg-1:      #161410;
+  --bg-2:      #1E1C18;
+  --bg-3:      #252320;
+  --ink:       #F0EBE1;
+  --ink-2:     #B8B0A4;
+  --ink-3:     #6E6860;
+  --gold:      #C9A96E;
+  --gold-dim:  #8A6E42;
+  --gold-glow: rgba(201,169,110,0.10);
+  --border:    rgba(201,169,110,0.12);
+  --border-2:  rgba(201,169,110,0.25);
+  --user-bg:   #1A2318;
+  --r:         8px;
+  --r-lg:      14px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html { height: 100%; }
+body {
+  height: 100%;
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+#root { height: 100%; display: flex; flex-direction: column; }
+
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+/* ── Animations ── */
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes barPulse { 0%,100% { transform: scaleY(0.5); opacity: 0.4; } 50% { transform: scaleY(1); opacity: 1; } }
+@keyframes glow { 0%,100% { box-shadow: 0 0 0 0 transparent; } 50% { box-shadow: 0 0 20px 4px rgba(201,169,110,0.12); } }
+@keyframes ripple { to { transform: scale(2.5); opacity: 0; } }
+
+.anim-up   { animation: slideUp 0.35s ease both; }
+.anim-up-1 { animation: slideUp 0.35s ease 0.08s both; }
+.anim-up-2 { animation: slideUp 0.35s ease 0.16s both; }
+.anim-up-3 { animation: slideUp 0.35s ease 0.24s both; }
+.anim-up-4 { animation: slideUp 0.35s ease 0.32s both; }
+.anim-fade { animation: fadeIn 0.3s ease both; }
+
+/* ── Typography ── */
+.serif { font-family: 'Playfair Display', serif; }
+.serif-i { font-family: 'Playfair Display', serif; font-style: italic; }
+
+/* ── Gold divider ── */
+.gold-line { width: 36px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+/* ── Buttons ── */
+.btn-gold {
+  background: var(--gold);
+  color: var(--bg-0);
+  border: none;
+  border-radius: var(--r);
+  padding: 12px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.btn-gold:active { transform: scale(0.97); background: #D4B47A; }
+.btn-gold:disabled { background: var(--bg-3); color: var(--ink-3); }
+
+.btn-ghost {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  color: var(--ink-2);
+  padding: 10px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-ghost:active { border-color: var(--border-2); color: var(--ink); }
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-width: 40px;
+  min-height: 40px;
+}
+.icon-btn:active { color: var(--gold); background: var(--gold-glow); }
+
+/* ── Loading bars ── */
+.bars { display: flex; align-items: center; gap: 3px; height: 16px; }
+.bars span {
+  display: block; width: 3px; height: 12px;
+  background: var(--gold); border-radius: 2px;
+  animation: barPulse 1.2s ease infinite;
+}
+.bars span:nth-child(2) { animation-delay: .15s; }
+.bars span:nth-child(3) { animation-delay: .30s; }
+
+/* ── Chip ── */
+.chip {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--ink-3);
+  background: var(--bg-2);
+}
+
+/* ── Input ── */
+.input-field {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  resize: none;
+  width: 100%;
+  line-height: 1.5;
+}
+.input-field::placeholder { color: var(--ink-3); }
+
+/* ── Drawer overlay ── */
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* ── Drawer ── */
+.drawer {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: min(80vw, 280px);
+  background: var(--bg-1);
+  border-right: 1px solid var(--border);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  animation: slideLeft 0.25s ease;
+}
+
+/* ── Desktop sidebar ── */
+@media (min-width: 768px) {
+  .sidebar-desktop {
+    width: 220px;
+    background: var(--bg-1);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 100%;
+  }
+}
+
+/* ── Suggestion chips scroll ── */
+.suggestions-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.suggestions-scroll::-webkit-scrollbar { display: none; }
