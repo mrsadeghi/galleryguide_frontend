@@ -288,7 +288,6 @@ export default function App() {
           <Sidebar
             chats={chats.filter(c => !c.isLocal || c.messages.length > 0)}
             activeChatId={activeChatId}
-            onSelect={setActiveChatId}
             onNew={createChat}
             language={langLabel}
             isMobile={isMobile}
