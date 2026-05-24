@@ -6,7 +6,7 @@ import InputBar from "./components/InputBar";
 import { useVoice } from "./hooks/useVoice";
 
 // const API = "http://localhost:8008";
-const API = "http://51.20.12.67:8001";
+const API = "https://api.galleryguide.online";
 
 const SUGGESTIONS = {
   en: ["Tell me about the Mona Lisa", "Who was Michelangelo?", "What is the Birth of Venus?", "Compare Leonardo and Raphael"],
