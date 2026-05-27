@@ -7,11 +7,15 @@ export default function App() {
   const [showDemo, setShowDemo] = useState(
     window.location.pathname === "/demo"
   );
-  const [contactPlan, setContactPlan] = useState(null);
+  const [contactPlan, setContactPlan] = useState(
+    window.location.pathname === "/contact" ? "Pilot" : null
+  );
 
   useEffect(() => {
     const handlePop = () => {
-      setShowDemo(window.location.pathname === "/demo");
+      const path = window.location.pathname;
+      setShowDemo(path === "/demo");
+      if (path !== "/contact") setContactPlan(null);
     };
     window.addEventListener("popstate", handlePop);
     return () => window.removeEventListener("popstate", handlePop);
@@ -27,7 +31,17 @@ export default function App() {
     setShowDemo(false);
   };
 
-  if (contactPlan) return <ContactPage plan={contactPlan} onBack={() => setContactPlan(null)} />;
+  const goToContact = (plan) => {
+    window.history.pushState({}, "", "/contact");
+    setContactPlan(plan);
+  };
+
+  const goBackFromContact = () => {
+    window.history.pushState({}, "", "/");
+    setContactPlan(null);
+  };
+
+  if (contactPlan) return <ContactPage plan={contactPlan} onBack={goBackFromContact} />;
   if (showDemo) return <ChatApp onBack={goToHome} />;
-  return <LandingPage onEnterDemo={goToDemo} onContact={plan => setContactPlan(plan)} />;
+  return <LandingPage onEnterDemo={goToDemo} onContact={goToContact} />;
 }
