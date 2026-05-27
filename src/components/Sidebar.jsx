@@ -9,7 +9,8 @@ export default function Sidebar({ chats, activeChatId, onSelect, onNew, language
               border: "1px solid var(--border-2)", background: "var(--bg-2)",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <span className="serif" style={{ fontSize: 13, color: "var(--gold)" }}>G</span>
+              {/* <span className="serif" style={{ fontSize: 13, color: "var(--gold)" }}>G</span> */}
+              <img src="/logo.png" alt="Gallery Guide" style={{ width: 20, height: 20, objectFit: "contain" }} />
             </div>
             <span className="serif-i" style={{ fontSize: 15, color: "var(--ink)" }}>Gallery Guide</span>
           </div>

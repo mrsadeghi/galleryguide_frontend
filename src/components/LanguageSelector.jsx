@@ -72,7 +72,8 @@ export default function LanguageSelector({ onSelect }) {
             margin: "0 auto 14px",
             animation: "glow 3s ease infinite",
           }}>
-            <span className="serif" style={{ fontSize: 20, color: "var(--gold)" }}>G</span>
+            {/* <span className="serif" style={{ fontSize: 20, color: "var(--gold)" }}>G</span> */}
+            <img src="/logo.png" alt="Gallery Guide" style={{ width: 20, height: 20, objectFit: "contain" }} />
           </div>
           <h1 className="serif-i anim-up-1" style={{ fontSize: "clamp(36px, 10vw, 52px)", fontWeight: 400, color: "var(--ink)", lineHeight: 1.1, marginBottom: 10 }}>
             Gallery Guide
